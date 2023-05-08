@@ -1,4 +1,7 @@
+#!/usr/bin/env python3.11
+
 import rospy
+from admon_mode_cps_pkg.adaption_controller.TBModeManager import create_mm
 from admon_mode_cps_pkg.util.tester import get_test_registry
 from std_msgs.msg import String
 
@@ -20,6 +23,7 @@ if __name__ == '__main__':
         # create registry
         registry = get_test_registry()
         # init Mode Manager
-        print('temp')
+        mm_list = create_mm(registry)
+
     except rospy.ROSInterruptException:
         pass

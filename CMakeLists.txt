@@ -162,7 +162,6 @@ include_directories(
 catkin_install_python(PROGRAMS
     scripts/main.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Mark executables for installation
