@@ -1,3 +1,5 @@
+import time
+
 import rospy
 import rostopic
 from admon_mode_cps_pkg.message_broker.MessageBroker import MessageBroker
@@ -14,6 +16,8 @@ def handle_new_mon_message(data, topic_meta):
         cleaned_ranges = [value for value in data.ranges if value < float('inf')]
         data_msg = min(cleaned_ranges)
         mon_man.message_broker.forward_msg(topic_str, data_msg)
+        # wait pub_time_wait
+        time.sleep(mon_man.topic_list[topic_str])
 
 
 class MonitoringManager(object):
@@ -25,17 +29,17 @@ class MonitoringManager(object):
 
     def __init__(self) -> None:
         super().__init__()
-        self.topic_list = []
+        self.topic_list = {}
         self.message_broker = MessageBroker()
 
-    def add_topic(self, topic_name: str) -> None:
+    def add_topic(self, topic_name: str, init_pub_time_wait: float) -> None:
         """Adds a topic to the topic list"""
 
-        if isinstance(topic_name, str):
+        if isinstance(topic_name, str) and isinstance(init_pub_time_wait, float):
             if topic_name in self.topic_list:
                 raise AttributeError(f"Topic already exists in topic_list: {topic_name}")
             else:
-                self.topic_list.append(topic_name)
+                self.topic_list[topic_name] = init_pub_time_wait
         else:
             raise ValueError("Couldn't  add topic as either topic_name is not a string or frequency is not a float!")
 
@@ -44,8 +48,9 @@ class MonitoringManager(object):
         rospy.init_node('pre_mon', anonymous=True)
 
         # start dynamic subscriber
-        for topic_name in self.topic_list:
+        for topic_name, pub_time_wait in self.topic_list.items():
             topic_type, topic_str, _ = rostopic.get_topic_class(topic_name)
-            rospy.Subscriber(topic_str, topic_type, handle_new_mon_message, [topic_str, topic_type, self])
+            rospy.Subscriber(topic_str, topic_type, handle_new_mon_message,
+                             [topic_str, topic_type, self])
 
         rospy.spin()
