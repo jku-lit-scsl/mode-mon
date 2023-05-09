@@ -30,7 +30,7 @@ Furthermore, an up and running MQTT Broker (e.g., mosquitto) as localhost is req
 3. Start ROS: ```roscore```
 4. Start Gazebo multi simulation: ```roslaunch turtlebot3_gazebo multi_turtlebot3.launch```
 5. Run ROS package: ```rosrun amon_mode_cps main.py``` (this also starts the monitoring)
-6. Trigger a maintenance mode switch for a TurtleBot by publishing it via the MQTT Broker:
+6. Trigger a maintenance mode switch for a TurtleBot by publishing it via the MQTT Broker under the `trigger` topic:
 
 ```
 {
