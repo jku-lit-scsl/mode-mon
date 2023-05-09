@@ -11,6 +11,8 @@ def get_test_devices(zone_list):
     turtlebot_2 = Device(device_id='tb3_1', zone_id=zone_list[3], name='tb3_1')
     turtlebot_3 = Device(device_id='tb3_2', zone_id=zone_list[5], name='tb3_2')
     turtlebot_1.can_move_freely()
+    turtlebot_2.can_move_freely()
+    # turtlebot_3.can_move_freely()
     return [turtlebot_1, turtlebot_2, turtlebot_3]
 
 
@@ -31,8 +33,8 @@ def get_test_registry():
 
 
 def add_test_topics(monitoring_manager: MonitoringManager):
-    monitoring_manager.add_topic('/tb3_0/scan', 1.0)
-    monitoring_manager.add_topic('/tb3_1/scan', 1.0)
-    monitoring_manager.add_topic('/tb3_2/scan', 1.0)
+    monitoring_manager.update_topic('/tb3_0/scan', 3.0)
+    monitoring_manager.update_topic('/tb3_1/scan', 3.0)
+    monitoring_manager.update_topic('/tb3_2/scan', 3.0)
 
     return monitoring_manager

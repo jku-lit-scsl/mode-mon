@@ -1,7 +1,5 @@
-import sys
-
-from admon_mode_cps_pkg.util.util import generate_uuid
 import paho.mqtt.client as mqtt
+from admon_mode_cps_pkg.util.util import generate_uuid
 
 
 class MessageBroker(object):
@@ -17,3 +15,8 @@ class MessageBroker(object):
 
     def forward_msg(self, topic_str, msg):
         self.client.publish(topic_str[1:], msg)
+
+    def subscribe_to_topic(self, topic, cb_on_message):
+        self.client.subscribe(topic)
+        self.client.on_message = cb_on_message
+        self.client.loop_start()
