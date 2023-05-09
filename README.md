@@ -26,7 +26,7 @@ Furthermore, an up and running MQTT Broker (e.g., mosquitto) as localhost is req
 ### Bring-Up
 
 1. Fetch ROS package into catkin workspace
-2. Run: ```catcin_make``` in catkin workspace
+2. Run: ```catkin_make``` in catkin workspace
 3. Start ROS: ```roscore```
 4. Start Gazebo multi simulation: ```roslaunch turtlebot3_gazebo multi_turtlebot3.launch```
 5. Run ROS package: ```rosrun amon_mode_cps main.py``` (this also starts the monitoring)
