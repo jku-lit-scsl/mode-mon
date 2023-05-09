@@ -59,7 +59,6 @@ class MQTTMatcher(object):
         that match the :topic"""
         lst = topic.split('/')
         normal = not topic.startswith('$')
-
         def rec(node, i=0):
             if i == len(lst):
                 if node._content is not None:
@@ -76,5 +75,4 @@ class MQTTMatcher(object):
                 content = node._children['#']._content
                 if content is not None:
                     yield content
-
         return rec(self._root)

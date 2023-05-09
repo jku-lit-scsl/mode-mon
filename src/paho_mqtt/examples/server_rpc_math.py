@@ -24,7 +24,6 @@ import context  # Ensures paho is in PYTHONPATH
 import paho.mqtt.client as mqtt
 from paho.mqtt.packettypes import PacketTypes
 
-
 # The math functions exported
 
 def add(nums):
@@ -33,13 +32,11 @@ def add(nums):
         sum += x
     return sum
 
-
 def mult(nums):
     prod = 1
     for x in nums:
         prod *= x
     return prod
-
 
 # Remember that the MQTTv5 callback takes the additional 'props' parameter.
 def on_connect(mqttc, userdata, flags, rc, props):
@@ -82,7 +79,6 @@ def on_message(mqttc, userdata, msg):
     payload = json.dumps(res)
     mqttc.publish(reply_to, payload, qos=1, properties=props)
 
-
 def on_log(mqttc, obj, level, string):
     print(string)
 
@@ -97,6 +93,6 @@ mqttc.on_connect = on_connect
 # Uncomment to enable debug messages
 # mqttc.on_log = on_log
 
-# mqttc.connect("mqtt.eclipseprojects.io", 1883, 60)
+#mqttc.connect("mqtt.eclipseprojects.io", 1883, 60)
 mqttc.connect(host="localhost", clean_start=False)
 mqttc.loop_forever()

@@ -36,7 +36,6 @@ corr_id = b"1"
 # This is sent in the message callback when we get the respone
 reply = None
 
-
 # The MQTTv5 callback takes the additional 'props' parameter.
 def on_connect(mqttc, userdata, flags, rc, props):
     global client_id, reply_to
@@ -110,3 +109,4 @@ rsp = json.loads(reply)
 print("Response: " + str(rsp))
 
 mqttc.loop_stop()
+

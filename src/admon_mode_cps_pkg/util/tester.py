@@ -1,4 +1,5 @@
 """These methods create test data for the default multi_turtlebot3 scenario shipped per default by ROS"""
+from admon_mode_cps_pkg.adaption_controller.MonitoringManager import MonitoringManager
 from admon_mode_cps_pkg.registry.device_registry import Device
 from admon_mode_cps_pkg.registry.registry import Registry
 from admon_mode_cps_pkg.registry.zone_registry import Zone
@@ -27,3 +28,11 @@ def get_test_registry():
     zone_list = get_test_zones()
     device_list = get_test_devices(zone_list)
     return Registry(zone_list=zone_list, device_list=device_list)
+
+
+def add_test_topics(monitoring_manager: MonitoringManager):
+    monitoring_manager.add_topic('/tb3_0/scan')
+    monitoring_manager.add_topic('/tb3_1/scan')
+    monitoring_manager.add_topic('/tb3_2/scan')
+
+    return monitoring_manager

@@ -61,6 +61,7 @@ except ImportError:
 
     import urlparse as urllib_dot_parse
 
+
 try:
     # Use monotonic clock if available
     time_func = time.monotonic
@@ -73,6 +74,7 @@ except ImportError:
     HAVE_DNS = False
 else:
     HAVE_DNS = True
+
 
 if platform.system() == 'Windows':
     EAGAIN = errno.WSAEWOULDBLOCK
@@ -361,7 +363,6 @@ class MQTTMessageInfo(object):
 
         timeout_time = None if timeout is None else time.time() + timeout
         timeout_tenth = None if timeout is None else timeout / 10.
-
         def timed_out():
             return False if timeout is None else time.time() > timeout_time
 
@@ -994,6 +995,7 @@ class Client(object):
         self._clean_start = clean_start
         self._connect_properties = properties
         self._state = mqtt_cs_connect_async
+
 
     def reconnect_delay_set(self, min_delay=1, max_delay=120):
         """ Configure the exponential reconnect delay
@@ -1841,7 +1843,6 @@ class Client(object):
         def decorator(func):
             self.on_log = func
             return func
-
         return decorator
 
     @property
@@ -1898,7 +1899,6 @@ class Client(object):
         def decorator(func):
             self.on_connect = func
             return func
-
         return decorator
 
     @property
@@ -1928,7 +1928,6 @@ class Client(object):
         def decorator(func):
             self.on_connect_fail = func
             return func
-
         return decorator
 
     @property
@@ -1968,7 +1967,6 @@ class Client(object):
         def decorator(func):
             self.on_subscribe = func
             return func
-
         return decorator
 
     @property
@@ -2004,7 +2002,6 @@ class Client(object):
         def decorator(func):
             self.on_message = func
             return func
-
         return decorator
 
     @property
@@ -2042,7 +2039,6 @@ class Client(object):
         def decorator(func):
             self.on_publish = func
             return func
-
         return decorator
 
     @property
@@ -2080,7 +2076,6 @@ class Client(object):
         def decorator(func):
             self.on_unsubscribe = func
             return func
-
         return decorator
 
     @property
@@ -2118,7 +2113,6 @@ class Client(object):
         def decorator(func):
             self.on_disconnect = func
             return func
-
         return decorator
 
     @property
@@ -2149,7 +2143,6 @@ class Client(object):
         def decorator(func):
             self.on_socket_open = func
             return func
-
         return decorator
 
     def _call_socket_open(self):
@@ -2195,7 +2188,6 @@ class Client(object):
         def decorator(func):
             self.on_socket_close = func
             return func
-
         return decorator
 
     def _call_socket_close(self, sock):
@@ -2241,7 +2233,6 @@ class Client(object):
         def decorator(func):
             self._on_socket_register_write = func
             return func
-
         return decorator
 
     def _call_socket_register_write(self):
@@ -2290,7 +2281,6 @@ class Client(object):
         def decorator(func):
             self._on_socket_unregister_write = func
             return func
-
         return decorator
 
     def _call_socket_unregister_write(self, sock=None):
@@ -2333,7 +2323,6 @@ class Client(object):
         def decorator(func):
             self.message_callback_add(sub, func)
             return func
-
         return decorator
 
     def message_callback_remove(self, sub):

@@ -18,6 +18,7 @@
 
 
 class PacketTypes:
+
     """
     Packet types class.  Includes the AUTH packet for MQTT v5.0.
 
