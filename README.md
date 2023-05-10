@@ -1,7 +1,11 @@
 # Proof of Concept Repo for IWCFS'23 Submission
 
-## Towards adaptive Monitoring for safety-critical collaborative CPS environments with Modes
+## Towards Increasing Safety in Collaborative CPS Environments
 
+### Abstract
+Cyber-Physical Systems (CPS) frequently operate in collaborative environments with other CPS and humans. This collaborative environment has the potential for situations in which CPS endanger humans. We argue that safety in such environments can be increased if the environment is aware of the safety-critical situation and can respond appropriately. In this paper, we describe our preliminary work on a collaborative CPS safety framework that combines distinct modes of operation with adaptive monitoring.
+
+### About
 This repository contains a prototypical implementation of the proposed framework architecture.
 The repository represents a ready to use ROS package.
 
